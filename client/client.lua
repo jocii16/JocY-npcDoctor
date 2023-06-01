@@ -10,31 +10,34 @@ function zone()
     local zone = lib.zones.sphere({
         coords = Config.ped.zone,
         radius = 2.5,
-        debug = Config.debug,
+        debug = false,
         inside = function ()
             if GetEntityHealth(cache.ped) <= 0 then
-               lib.showTextUI("Nyomd meg az [E] gombot az újraéledéshez") 
+               lib.showTextUI("Press [E] to interact") 
                if IsControlJustPressed(0, 38) then
-                local money = exports.ox_inventory:Search("count", "money")
-                if money >= Config.amount then
+                ESX.TriggerServerCallback('jocy-npcDoctor:server:checkmoney', function(have)
+                    if have then
                     TriggerEvent('esx_ambulancejob:revive')
-                    TriggerServerEvent("money")
+                    TriggerServerEvent("jocy-npcDoctor:server:money")
                     lib.notify({
-                        title = 'Sikeres interakció',
-                        description = 'Újraéledtél  \nA pénz levonásra került!',
-                        type = 'inform',
-                        position = "top",
+                        title = 'Successful interaction',
+                        description = 'You are revived!',
+                        type = 'success',
+                        position = 'top',
                         duration = 2000
                     })
+
                 else
                     lib.notify({
-                        title = 'Sikertelen interakció',
-                        description = 'Nincs elég pénzed!',
+                        title = 'Failed interaction',
+                        description = 'You dont have enough money!',
                         type = 'error',
-                        position = "top",
+                        position = 'top',
                         duration = 2000
                     })
-                end
+
+                    end
+                end)
                end
             else
                 lib.hideTextUI()
