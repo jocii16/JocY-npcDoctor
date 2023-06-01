@@ -2,10 +2,10 @@ Config = {}
 
 Config.ped = {
     model = 's_m_m_doctor_01', -- https://docs.fivem.net/docs/game-references/ped-models/
-    coords = vec4(-818.9671, -1235.6470, 6.3374, 316.4873), -- Ped kordi
-    zone = vec3(-818.9671, -1235.6470, 7.3374) -- zone kord = Ped kordi
+    coords = vec4(168.4956, -988.7020, 29.0867, 353.7385), -- Ped kordi
+    zone = vec3(168.4956, -988.7020, 30.0867) -- zone kord = Ped kordi
 }
 
-Config.amount = 500 --Ennyit von le az újraélesztésért!
+Config.amount = 500 --That's how much he deducts for resuscitation!
 
-Config.debug = false
+Config.EnableBank = true  --If this value is true, the money is not deducted from the player's inventory but from the player's bank account
